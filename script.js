@@ -1183,32 +1183,68 @@ if (reasonsGridEl) {
 renderRazones101();
 
 // ==========================================
-// 7B. DOS JUEGOS ROMÁNTICOS Y DIDÁCTICOS
+// DOS JUEGOS ROMÁNTICOS Y DIDÁCTICOS (10 DE CADA UNO)
 // ==========================================
 const PREGUNTAS_TRIVIA = [
   {
-    pregunta: "¿En qué día de cada mes celebramos nuestro capítulo especial?",
+    pregunta: "1. ¿En qué día de cada mes celebramos nuestro capítulo especial?",
     opciones: ["El día 1 de cada mes", "El día 3 de cada mes", "El día 15 de cada mes"],
     correcta: 1,
-    explicacion: "💡 Aprendizaje de nuestra historia: cada día 3 celebramos un mes más desde el 03 de mayo de 2025, recordando que la constancia en los pequeños rituales fortalece el vínculo."
+    explicacion: "Cada día 3 celebramos un mes más desde el 03 de mayo de 2025: los pequeños rituales constantes mantienen viva la cercanía."
   },
   {
-    pregunta: "¿Qué representa nuestra distancia entre Comas y San Juan de Miraflores?",
+    pregunta: "2. ¿Qué representa nuestra distancia entre Comas y San Juan de Miraflores?",
     opciones: ["Un obstáculo imposible", "Kilómetros que hacen más valioso cada reencuentro", "Un motivo para dejar de vernos"],
     correcta: 1,
-    explicacion: "💡 Reflexión didáctica: la distancia física pone a prueba la paciencia y el esfuerzo compartido, pero cada reencuentro se disfruta con mayor gratitud."
+    explicacion: "La distancia física enseña paciencia y esfuerzo mutuo; cada encuentro se disfruta con más cariño y gratitud."
   },
   {
-    pregunta: "¿Cuál es el valor que más importa en lo que construimos día a día?",
+    pregunta: "3. ¿Cuál es el valor que más importa en lo que construimos día a día?",
     opciones: ["El cariño sincero, el cuidado y estar presentes", "Solo los regalos costosos", "Hablar sin escucharnos"],
     correcta: 0,
-    explicacion: "💡 Detalle del corazón: dar de lo poco que se tiene con honestidad, ternura y apoyo mutuo construye una base mucho más profunda."
+    explicacion: "Dar de lo poco que se tiene con nobleza, escucha y apoyo real crea vínculos mucho más sólidos que lo material."
   },
   {
-    pregunta: "¿Qué celebramos el 03 de diciembre de 2026 al llegar al mes 19?",
+    pregunta: "4. ¿Qué celebramos el 03 de diciembre de 2026 al llegar al mes 19?",
     opciones: ["1 año y 7 meses juntos", "Solo 6 meses", "2 años exactos"],
     correcta: 0,
-    explicacion: "💡 Cálculo del tiempo: desde mayo de 2025 hasta diciembre de 2026 transcurren 19 meses, equivalentes a 1 año y 7 meses compartidos."
+    explicacion: "Desde mayo de 2025 hasta diciembre de 2026 pasan 19 meses: 1 año completo (12 meses) más 7 meses adicionales."
+  },
+  {
+    pregunta: "5. ¿Qué hace que un plan sencillo se vuelva inolvidable cuando estamos juntos?",
+    opciones: ["La compañía, las risas y la buena vibra", "Que sea muy caro", "Ir con prisa y sin conversar"],
+    correcta: 0,
+    explicacion: "El valor de un momento está en con quién lo compartes y en cómo te hace sentir."
+  },
+  {
+    pregunta: "6. ¿Por qué admiro tanto el esfuerzo y la historia de mi Grinch?",
+    opciones: ["Por su resiliencia, trabajo y amor a su familia", "Porque nunca tiene retos", "Porque evita esforzarse"],
+    correcta: 0,
+    explicacion: "Admirar la constancia, el respeto por las raíces y el cariño familiar fortalece la admiración mutua en una relación."
+  },
+  {
+    pregunta: "7. ¿Qué es lo más bonito de compartir música y baile en nuestra historia?",
+    opciones: ["Crear recuerdos alegres y conectar sin palabras", "Competir por quién baila mejor", "Ignorar la letra y el ritmo"],
+    correcta: 0,
+    explicacion: "La música y el baile ayudan a liberar tensiones y anclan emociones felices a momentos concretos."
+  },
+  {
+    pregunta: "8. ¿Cómo se cuidan mejor las emociones cuando hay días pesados?",
+    opciones: ["Con empatía, paciencia y palabras sinceras", "Guardando rencor en silencio", "Ignorando lo que el otro siente"],
+    correcta: 0,
+    explicacion: "La empatía y la comunicación calmada permiten acompañar al otro sin sumar más peso a un mal día."
+  },
+  {
+    pregunta: "9. ¿Qué simboliza nuestro álbum de recuerdos y fotos?",
+    opciones: ["Memoria afectiva de etapas vividas juntos", "Solo imágenes guardadas sin historia", "Un archivo olvidado"],
+    correcta: 0,
+    explicacion: "Guardar fotos con su historia ayuda a recordar de dónde venimos y cuánto hemos crecido juntos."
+  },
+  {
+    pregunta: "10. ¿Qué proyectamos para todo lo que aún nos falta escribir?",
+    opciones: ["Seguir caminando de la mano con cariño y metas", "Dejar todo al azar sin cuidar el vínculo", "Detenernos en el pasado"],
+    correcta: 0,
+    explicacion: "Proyectar el futuro juntos implica cultivar el presente con ternura, respeto y ganas de construir."
   }
 ];
 
@@ -1270,7 +1306,7 @@ function seleccionarOpcionTrivia(idx, clickedBtn, e) {
   if (esCorrecta) {
     triviaScore += 25;
     clickedBtn.classList.add("correct");
-    lanzarCorazones(e.clientX, e.clientY, 7);
+    if (typeof lanzarCorazones === "function") lanzarCorazones(e.clientX, e.clientY, 7);
   } else {
     clickedBtn.classList.add("wrong");
     if (allBtns[actual.correcta]) {
@@ -1284,8 +1320,8 @@ function seleccionarOpcionTrivia(idx, clickedBtn, e) {
   if (triviaFeedbackEl) {
     triviaFeedbackEl.classList.remove("hidden");
     triviaFeedbackEl.innerHTML = `
-      <strong>${esCorrecta ? "¡Muy bien, mi Grinch! 💚" : "Casi, pero aquí va el dato romántico: ✨"}</strong><br/>
-      ${actual.explicacion}
+      <strong>${esCorrecta ? "¡Muy bien, mi Grinch! 💚" : "Casi, pero aquí va el dato didáctico: ✨"}</strong><br/>
+      💡 ${actual.explicacion}
     `;
   }
   if (nextTriviaBtn) {
@@ -1299,20 +1335,23 @@ if (nextTriviaBtn) {
       triviaIndex++;
       renderTrivia();
     } else {
-      abrirModal(
-        "💘 Resultado de Nuestra Trivia Didáctica",
-        `
-        <div class="secret-note-box" style="text-align: center; padding: 22px;">
-          <span class="milestone-tag">🏆 PUNTAJE FINAL: ${triviaScore} / ${PREGUNTAS_TRIVIA.length * 25} PTS</span>
-          <h4 style="color: #fff3b0; font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; margin: 12px 0;">
-            ¡Qué bonito es jugar y aprender juntos! 💖
-          </h4>
-          <p style="font-size: 1.03rem;">
-            Más allá de los puntos, cada pregunta es un recordatorio de lo mucho que significa caminar contigo y guardar cada detalle de nuestra historia.
-          </p>
-        </div>
-        `
-      );
+      const maxPts = PREGUNTAS_TRIVIA.length * 25;
+      if (typeof abrirModal === "function") {
+        abrirModal(
+          "💘 Resultado de Nuestra Trivia Didáctica",
+          `
+          <div class="secret-note-box" style="text-align: center; padding: 22px;">
+            <span class="milestone-tag">🏆 PUNTAJE FINAL: ${triviaScore} / ${maxPts} PTS</span>
+            <h4 style="color: #fff3b0; font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; margin: 12px 0;">
+              ¡Completaste las 10 preguntas juntos! 💖
+            </h4>
+            <p style="font-size: 1.03rem;">
+              Cada respuesta fue un pretexto bonito para recordar lo que valoramos, aprendemos y compartimos en nuestra historia.
+            </p>
+          </div>
+          `
+        );
+      }
       triviaIndex = 0;
       triviaScore = 0;
       renderTrivia();
@@ -1330,7 +1369,6 @@ if (restartTriviaBtn) {
 
 renderTrivia();
 
-// --- JUEGO 2: ARMA LA FRASE DEL CORAZÓN ---
 const FRASES_PUZZLE = [
   {
     pista: "💡 Pista 1: Comienza con el cariño sincero que no necesita grandes lujos para entregarse.",
@@ -1343,6 +1381,34 @@ const FRASES_PUZZLE = [
   {
     pista: "💡 Pista 3: Une el tiempo compartido con la ilusión de lo que aún viene.",
     piezas: ["Cada día 3", "celebra nuestra historia", "y todo lo bonito", "que nos espera 💖"]
+  },
+  {
+    pista: "💡 Pista 4: Expresa calma y tranquilidad cuando estamos juntos.",
+    piezas: ["Cuando estoy contigo", "siento paz", "y el mundo", "se queda en calma 🌿"]
+  },
+  {
+    pista: "💡 Pista 5: Destaca el valor de cada kilómetro recorrido para vernos.",
+    piezas: ["Cada kilómetro", "que nos separa", "hace más valioso", "nuestro reencuentro 🌌"]
+  },
+  {
+    pista: "💡 Pista 6: Celebra las risas espontáneas que nacen sin planearlas.",
+    piezas: ["Tus bromas", "y tu sonrisa", "iluminan hasta", "los días cansados 💚"]
+  },
+  {
+    pista: "💡 Pista 7: Reconoce el esfuerzo y la nobleza de tu caminar.",
+    piezas: ["Admiro tu esfuerzo", "tu nobleza", "y el gran corazón", "que llevas dentro ✨"]
+  },
+  {
+    pista: "💡 Pista 8: Habla de caminar de la mano en las buenas y en las pruebas.",
+    piezas: ["Caminar de tu mano", "me enseña", "que el cariño real", "se cuida cada día ❤️"]
+  },
+  {
+    pista: "💡 Pista 9: Resalta la gratitud por cada mes que sumamos juntos.",
+    piezas: ["Cada mes cumplido", "es un regalo", "que guardo", "en mi memoria 💖"]
+  },
+  {
+    pista: "💡 Pista 10: Cierra con la promesa de seguir eligiéndonos con amor.",
+    piezas: ["Hoy, mañana", "y en cada día 3", "te elijo", "con todo mi amor 💙"]
   }
 ];
 
@@ -1437,9 +1503,9 @@ function evaluarPuzzle(e) {
   if (esOrdenCorrecto) {
     if (puzzleStatusEl) {
       puzzleStatusEl.style.color = "#86efac";
-      puzzleStatusEl.textContent = `💖 ¡Frase completa! "${actual.piezas.join(" ")}"`;
+      puzzleStatusEl.textContent = `💖 ¡Frase ${puzzleIndex + 1} completa! "${actual.piezas.join(" ")}"`;
     }
-    if (e) lanzarCorazones(e.clientX, e.clientY, 10);
+    if (e && typeof lanzarCorazones === "function") lanzarCorazones(e.clientX, e.clientY, 10);
   } else {
     if (puzzleStatusEl) {
       puzzleStatusEl.style.color = "#fde047";
