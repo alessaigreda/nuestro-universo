@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuestro Universo Privado ✨</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Fondo animado romántico -->
+  <canvas id="stars-canvas"></canvas>
+
+  <!-- PANTALLA 0: MENSAJE DINÁMICO AL INICIAR LA PÁGINA WEB -->
+  <div id="opening-splash" class="opening-splash">
+    <div class="opening-card glass-card">
+      <span class="opening-pill">💙 PARA TI, MI GRINCH · NUESTRO RINCÓN</span>
+      <p id="opening-dynamic-quote" class="opening-quote"></p>
+      <p class="opening-sub">Cada detalle aquí nace del cariño sincero y de las ganas de compartir contigo.</p>
+      <button type="button" id="enter-from-splash-btn" class="btn-primary opening-btn">
+        Entrar a nuestro universo ✨
+      </button>
+    </div>
+  </div>
+
+  <!-- PANTALLA 1: LOGIN EXCLUSIVO -->
+  <section id="login-screen" class="screen hidden">
+    <div class="glass-card login-box">
+      <div class="lock-icon" id="lock-icon">🔒</div>
+      <h1>Acceso Privado</h1>
+      <p class="subtitle">Solo una persona en el mundo tiene la llave de este lugar.</p>
+
+      <form id="login-form">
+        <div class="input-group">
+          <label for="username">Usuario</label>
+          <input type="text" id="username" placeholder="Tu apodo especial..." autocomplete="off" required />
+        </div>
+
+        <div class="input-group">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" placeholder="••••" required />
+        </div>
+
+        <p id="error-msg" class="error-msg"></p>
+
+        <button type="submit" id="login-btn" class="btn-primary">Desbloquear Sorpresa ✨</button>
+      </form>
+
+      <button type="button" id="hint-btn" class="btn-link">¿Necesitas una pista?</button>
+      <p id="hint-text" class="hint-text hidden">
+        💡 Pista: El usuario es tu apodo especial (Grinch) y la contraseña es la unión de nuestras edades (2530).
+      </p>
+    </div>
+  </section>
+
+  <!-- PANTALLA DE BIENVENIDA ANIMADA (PARTÍCULAS FORMANDO CORAZÓN Y TEXTO) -->
+  <div id="welcome-intro" class="welcome-intro hidden">
+    <canvas id="welcome-canvas"></canvas>
+    <button type="button" id="skip-welcome-btn" class="welcome-skip-btn">Continuar ✨</button>
+  </div>
+
+  <!-- PANTALLA 2: CONTENIDO PRINCIPAL -->
+  <main id="main-content" class="hidden" style="display: none;">
+    <!-- Barra de navegación rápida -->
+    <nav class="top-nav glass-card">
+      <a href="#inicio">Inicio</a>
+      <a href="#calendario-amor">📅 Día 3</a>
+      <a href="#galaxia">🌌 Galaxia</a>
+      <a href="#diapositivas">🌀 Espiral</a>
+      <a href="#galeria">📸 Fotos</a>
+      <a href="#videos">🎬 Videos</a>
+      <a href="#musica">🎵 Música</a>
+      <a href="#razones-101">💘 101 Razones</a>
+      <a href="#juegos">🎮 Juegos</a>
+      <a href="#archivos">🧩 Sorpresas</a>
+      <a href="#carta">💌 Carta</a>
+      <a href="#vales">🎟️ Vales</a>
+      <button type="button" id="logout-btn" class="nav-exit-btn" title="Cerrar sesión y volver al inicio">🚪 Salir</button>
+    </nav>
+
+    <header id="inicio" class="hero">
+      <span class="badge">✨ Bienvenido a nuestro rincón, Grinch ✨</span>
+      <h1>Cada segundo contigo vale la pena</h1>
+      <p>Un espacio creado con mucho amor para revivir nuestros momentos, fotos, videos y canciones.</p>
+
+      <p id="time-summary" class="time-summary"></p>
+
+      <!-- Contador en vivo -->
+      <div class="counter-grid glass-card">
+        <div class="time-box">
+          <span id="days">00</span>
+          <small>Días</small>
+        </div>
+        <div class="time-box">
+          <span id="hours">00</span>
+          <small>Horas</small>
+        </div>
+        <div class="time-box">
+          <span id="minutes">00</span>
+          <small>Minutos</small>
+        </div>
+        <div class="time-box">
+          <span id="seconds">00</span>
+          <small>Segundos</small>
+        </div>
+      </div>
+
+      <!-- AVISO GRANDE Y PERSONALIZADO AL CUMPLIR 1 AÑO Y 7 MESES -->
+      <div id="milestone-1y7m-banner" class="milestone-banner glass-card hidden">
+        <span class="milestone-tag">👑 ANIVERSARIO MUY ESPECIAL · 1 AÑO Y 7 MESES</span>
+        <h2>¡Felices 1 año y 7 meses juntos, mi Grinch! 💚✨</h2>
+        <p id="milestone-custom-message">
+          Un año y siete meses caminando de la mano, superando distancias, compartiendo risas, silencios bonitos y construyendo algo que de verdad es único. Gracias por ser mi refugio favorito, por cada detalle y por hacer que cada día a tu lado tenga magia. ¡Por muchísimos meses más juntos, amor mío! ❤️
+        </p>
+        <button type="button" id="open-milestone-modal-btn" class="btn-primary milestone-btn">
+          💌 Ver mensaje completo en pantalla grande
+        </button>
+      </div>
+    </header>
+
+    <!-- SECCIÓN: CALENDARIO DINÁMICO DE NUESTRO DÍA 3 + CORAZÓN DEL 3 DE DICIEMBRE -->
+    <section id="calendario-amor" class="container">
+      <h2 class="section-title">📅 Nuestro Día 3 Cada Mes</h2>
+      <p class="section-desc">Cada día 3 celebramos un capítulo más. Toca cualquier día para ver o dejar una nota especial.</p>
+
+      <div class="calendar-milestone-layout">
+        <div class="mini-calendar glass-card">
+          <div class="calendar-header">
+            <button type="button" id="prev-month-btn" class="cal-nav-btn" title="Mes anterior">◀</button>
+            <h3 id="calendar-month-label">Mes Año</h3>
+            <button type="button" id="next-month-btn" class="cal-nav-btn" title="Mes siguiente">▶</button>
+          </div>
+
+          <div class="calendar-weekdays">
+            <span>Lun</span>
+            <span>Mar</span>
+            <span>Mié</span>
+            <span>Jue</span>
+            <span>Vie</span>
+            <span>Sáb</span>
+            <span>Dom</span>
+          </div>
+
+          <div class="calendar-days" id="calendar-days"></div>
+
+          <div id="selected-day-panel" class="selected-day-panel">
+            <p id="selected-day-title">✨ Toca un día para ver su detalle</p>
+            <p id="selected-day-note" class="selected-day-note">
+              El <strong>3 de diciembre</strong> tiene un corazoncito remarcado por nuestros 1 año y 7 meses.
+            </p>
+            <button type="button" id="save-day-note-btn" class="btn-secondary small-note-btn">
+              ✏️ Guardar nota en este día
+            </button>
+          </div>
+
+          <div class="calendar-footer-note">
+            <span class="day3-dot">❤️</span>
+            <p id="day3-status-text">Cada día 3 es nuestro día especial 💖</p>
+          </div>
+        </div>
+
+        <div class="milestone-status-card glass-card">
+          <span class="badge">🎯 Meta Especial · 1 Año y 7 Meses</span>
+          <h3>Nuestra Cita con el 1 Año y 7 Meses</h3>
+          <p id="milestone-countdown-text" class="milestone-subtext">
+            Calculando el momento exacto de nuestro 1 año y 7 meses...
+          </p>
+          <div class="milestone-highlight-box">
+            <strong>Fecha clave:</strong> 03 de diciembre de 2026 (19 meses desde el 03 de mayo de 2025)
+          </div>
+          <p class="milestone-personal-quote">
+            “Y aunque no tenga mucho, siempre trataré de darte mucho de lo poco que tengo 💙”
+          </p>
+          <button type="button" id="preview-milestone-btn" class="btn-secondary">
+            ✨ Ver mensaje especial de 1 año y 7 meses
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: GALAXIA DE AMOR Y DISTANCIA -->
+    <section id="galaxia" class="container">
+      <h2 class="section-title">🌌 Nuestra Galaxia de Amor</h2>
+      <p class="section-desc">A pesar de la distancia entre Lima Norte y Lima Sur, nuestro universo nos conecta cada día.</p>
+
+      <div class="galaxy-box glass-card">
+        <canvas id="galaxy-canvas"></canvas>
+
+        <div class="galaxy-hud">
+          <div class="galaxy-points">
+            <div class="galaxy-place">
+              <span class="place-badge">📍 Tú · Comas</span>
+              <strong>Psje. Zarumilla 137, Urb. San Felipe</strong>
+            </div>
+
+            <div class="galaxy-distance-pill">
+              <span id="distance-km">~24.5 km</span>
+              <small>de distancia entre ambos</small>
+            </div>
+
+            <div class="galaxy-place">
+              <span class="place-badge">💚 Grinch · San Juan de Miraflores</span>
+              <strong>Av. Manuel Pazos 444</strong>
+            </div>
+          </div>
+
+          <div class="galaxy-tags">
+            <span>✨ Mi universo</span>
+            <span>💖 Cada kilómetro vale la pena</span>
+            <span>🌌 Siempre conectados</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 1: CORAZÓN DE PARTÍCULAS ASCENDENTES + FRASES EN ÓRBITA -->
+    <section id="diapositivas" class="container">
+      <h2 class="section-title">🌀 Nuestro Universo en Espiral</h2>
+      <p class="section-desc">Partículas de luz que nacen en la base y suben formando un corazón azul brillante con frases bien espaciadas girando a su alrededor.</p>
+
+      <div class="vortex-box glass-card" id="vortex-box">
+        <canvas id="vortex-canvas"></canvas>
+
+        <div class="vortex-floating-words" id="vortex-floating-words">
+          <span class="orbit-phrase" data-angle="0" data-rx="0.41" data-ry="0.35" data-speed="0.0036">INFINITO = ❤️</span>
+          <span class="orbit-phrase" data-angle="1.256" data-rx="0.42" data-ry="0.37" data-speed="0.0034">AMOR ETERNO ✨</span>
+          <span class="orbit-phrase" data-angle="2.513" data-rx="0.40" data-ry="0.34" data-speed="0.0038">MI GRINCH 💚</span>
+          <span class="orbit-phrase" data-angle="3.770" data-rx="0.43" data-ry="0.37" data-speed="0.0033">CADA DÍA 3 💖</span>
+          <span class="orbit-phrase" data-angle="5.026" data-rx="0.41" data-ry="0.35" data-speed="0.0035">MI LUGAR FAVORITO 🌌</span>
+        </div>
+
+        <div class="slide-controls vortex-controls">
+          <button type="button" id="toggle-vortex-pulse-btn" class="btn-secondary">✨ Pulso del corazón</button>
+          <button type="button" id="add-vortex-phrase-btn" class="btn-secondary">➕ Agregar frase</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: ÁLBUM DE FOTOS POLAROID INTERACTIVO -->
+    <section id="galeria" class="container">
+      <h2 class="section-title">📸 Nuestro Álbum de Recuerdos</h2>
+      <p class="section-desc">Toca cualquier foto para verla en grande, dale ❤️ o agrega fotos nuevas que quedan grabadas aquí.</p>
+
+      <div class="gallery-actions">
+        <label class="upload-btn">
+          📷 Agregar fotos nuevas al álbum (se guardan)
+          <input type="file" id="photo-upload" accept="image/*" multiple hidden />
+        </label>
+      </div>
+
+      <div class="polaroid-grid" id="polaroid-grid">
+        <div class="polaroid" data-caption="[Mensaje de foto1.jpeg]">
+          <div class="polaroid-img-wrap">
+            <img src="img/foto1.jpeg" alt="Foto 1" />
+          </div>
+          <p class="polaroid-caption">Foto 1: ["Un cumpleaños diferente"]</p>
+          <button type="button" class="like-pill" data-likes="1">❤️ <span>1</span></button>
+        </div>
+
+        <div class="polaroid" data-caption="[Mensaje de foto2.jpeg]">
+          <div class="polaroid-img-wrap">
+            <img src="img/foto2.jpeg" alt="Foto 2" />
+          </div>
+          <p class="polaroid-caption">Foto 2: ["Verte sonreir es mi prioridad"]</p>
+          <button type="button" class="like-pill" data-likes="1">❤️ <span>1</span></button>
+        </div>
+
+        <div class="polaroid" data-caption="[Mensaje de foto3.jpeg]">
+          <div class="polaroid-img-wrap">
+            <img src="img/foto3.jpeg" alt="Foto 3" />
+          </div>
+          <p class="polaroid-caption">Foto 3: ["La familia es el pilar de todo"]</p>
+          <button type="button" class="like-pill" data-likes="1">❤️ <span>1</span></button>
+        </div>
+
+        <div class="polaroid" data-caption="[Mensaje de foto4.jpeg]">
+          <div class="polaroid-img-wrap">
+            <img src="img/foto4.jpeg" alt="Foto 4" />
+          </div>
+          <p class="polaroid-caption">Foto 4: ["Marquitas prohibidas"]</p>
+          <button type="button" class="like-pill" data-likes="1">❤️ <span>1</span></button>
+        </div>
+
+        <div class="polaroid" data-caption="[Mensaje de foto5.jpeg]">
+          <div class="polaroid-img-wrap">
+            <img src="img/foto5.jpeg" alt="Foto 5" />
+          </div>
+          <p class="polaroid-caption">Foto 5: ["Parque de las aguas, un lugar mágico"]</p>
+          <button type="button" class="like-pill" data-likes="1">❤️ <span>1</span></button>
+        </div>
+
+        <div class="polaroid" data-caption="[Mensaje de foto6.jpeg]">
+          <div class="polaroid-img-wrap">
+            <img src="img/foto6.jpeg" alt="Foto 6" />
+          </div>
+          <p class="polaroid-caption">Foto 6: ["Por mas aventuras, paseos juntos"]</p>
+          <button type="button" class="like-pill" data-likes="1">❤️ <span>1</span></button>
+        </div>
+
+        <div class="polaroid" data-caption="[Mensaje de foto7.jpeg]">
+          <div class="polaroid-img-wrap">
+            <img src="img/foto7.jpeg" alt="Foto 7" />
+          </div>
+          <p class="polaroid-caption">Foto 7: ["A tu lado me siento tranquila"]</p>
+          <button type="button" class="like-pill" data-likes="1">❤️ <span>1</span></button>
+        </div>
+
+        <div class="polaroid" data-caption="[Mensaje de foto8.jpeg]">
+          <div class="polaroid-img-wrap">
+            <img src="img/foto8.jpeg" alt="Foto 8" />
+          </div>
+          <p class="polaroid-caption">Foto 8: ["Mis dias a tu lado son felices"]</p>
+          <button type="button" class="like-pill" data-likes="1">❤️ <span>1</span></button>
+        </div>
+
+        <div class="polaroid" data-caption="[Mensaje de foto9.jpeg]">
+          <div class="polaroid-img-wrap">
+            <img src="img/foto9.jpeg" alt="Foto 9" />
+          </div>
+          <p class="polaroid-caption">Foto 9: ["Primera salida con Arturito"]</p>
+          <button type="button" class="like-pill" data-likes="1">❤️ <span>1</span></button>
+        </div>
+
+        <div class="polaroid" data-caption="[Mensaje de foto10.jpeg]">
+          <div class="polaroid-img-wrap">
+            <img src="img/foto10.jpeg" alt="Foto 10" />
+          </div>
+          <p class="polaroid-caption">Foto 10: ["Los lugares no importan, solo importa estar a tu lado"]</p>
+          <button type="button" class="like-pill" data-likes="1">❤️ <span>1</span></button>
+        </div>
+
+        <div class="polaroid" data-caption="[Mensaje de foto11.jpeg]">
+          <div class="polaroid-img-wrap">
+            <img src="img/foto11.jpeg" alt="Foto 11" />
+          </div>
+          <p class="polaroid-caption">Foto 11: ["Una de nuestras primeras fotos"]</p>
+          <button type="button" class="like-pill" data-likes="1">❤️ <span>1</span></button>
+        </div>
+
+        <div class="polaroid" data-caption="[Mensaje de foto12.jpeg]">
+          <div class="polaroid-img-wrap">
+            <img src="img/foto12.jpeg" alt="Foto 12" />
+          </div>
+          <p class="polaroid-caption">Foto 12: ["Mega plaza se convirtió en nuestro punto de encuentro"]</p>
+          <button type="button" class="like-pill" data-likes="1">❤️ <span>1</span></button>
+        </div>
+
+        <div class="polaroid" data-caption="[Mensaje de foto13.jpeg]">
+          <div class="polaroid-img-wrap">
+            <img src="img/foto13.jpeg" alt="Foto 13" />
+          </div>
+          <p class="polaroid-caption">Foto 13: ["De tu mano lo quiero todo"]</p>
+          <button type="button" class="like-pill" data-likes="1">❤️ <span>1</span></button>
+        </div>
+
+        <div class="polaroid" data-caption="[Mensaje de foto14.jpeg]">
+          <div class="polaroid-img-wrap">
+            <img src="img/foto14.jpeg" alt="Foto 14" />
+          </div>
+          <p class="polaroid-caption">Foto 14: ["Te amare por siempre corazón"]</p>
+          <button type="button" class="like-pill" data-likes="1">❤️ <span>1</span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: SALA DE VIDEOS (TARJETAS INDIVIDUALES SIN ANIDAR) -->
+    <section id="videos" class="container">
+      <h2 class="section-title">🎬 Nuestros Videos Especiales</h2>
+      <p class="section-desc">Videos creados con mucho amor. Puedes verlos aquí o abrirlos en Modo Cine.</p>
+
+      <div class="gallery-actions">
+        <label class="upload-btn">
+          🎥 Agregar video desde tu equipo
+          <input type="file" id="video-upload" accept="video/*" multiple hidden />
+        </label>
+      </div>
+
+      <div class="videos-grid" id="videos-grid">
+        <div class="video-card glass-card">
+          <video src="videos/video1.mp4" controls preload="metadata"></video>
+          <div class="video-card-footer">
+            <div>
+              <h4>Nuestro Video Especial #1</h4>
+              <p>Hecho con todo mi cariño para ti 💖</p>
+            </div>
+            <button type="button" class="btn-secondary cinema-btn" data-video="videos/video1.mp4" data-title="Nuestro Video Especial #1">🍿 Modo Cine</button>
+          </div>
+        </div>
+
+        <div class="video-card glass-card">
+          <video src="videos/video2.mp4" controls preload="metadata"></video>
+          <div class="video-card-footer">
+            <div>
+              <h4>Nuestro Primer Baile #2</h4>
+              <p>Eres mi baile inolvidable 💖</p>
+            </div>
+            <button type="button" class="btn-secondary cinema-btn" data-video="videos/video2.mp4" data-title="Nuestro Primer Baile #2">🍿 Modo Cine</button>
+          </div>
+        </div>
+
+        <div class="video-card glass-card">
+          <video src="videos/video3.mp4" controls preload="metadata"></video>
+          <div class="video-card-footer">
+            <div>
+              <h4>Salida con Arturito #3</h4>
+              <p>Gracias por querer a mi sobrino 💖</p>
+            </div>
+            <button type="button" class="btn-secondary cinema-btn" data-video="videos/video3.mp4" data-title="Salida con Arturito #3">🍿 Modo Cine</button>
+          </div>
+        </div>
+
+        <div class="video-card glass-card">
+          <video src="videos/video4.mp4" controls preload="metadata"></video>
+          <div class="video-card-footer">
+            <div>
+              <h4>Un cumpleaños juntos #4</h4>
+              <p>La venganza de Moises 💖</p>
+            </div>
+            <button type="button" class="btn-secondary cinema-btn" data-video="videos/video4.mp4" data-title="Un cumpleaños juntos #4">🍿 Modo Cine</button>
+          </div>
+        </div>
+
+        <div class="video-card glass-card">
+          <video src="videos/video5.mp4" controls preload="metadata"></video>
+          <div class="video-card-footer">
+            <div>
+              <h4>Nuestra primera fiesta juntos #5</h4>
+              <p>Salidas inolvidables 💖</p>
+            </div>
+            <button type="button" class="btn-secondary cinema-btn" data-video="videos/video5.mp4" data-title="Nuestra primera fiesta juntos #5">🍿 Modo Cine</button>
+          </div>
+        </div>
+
+        <div class="video-card glass-card">
+          <video src="videos/video6.mp4" controls preload="metadata"></video>
+          <div class="video-card-footer">
+            <div>
+              <h4>Amo estar a tu lado #6</h4>
+              <p>Dios nos sabra guiar 💖</p>
+            </div>
+            <button type="button" class="btn-secondary cinema-btn" data-video="videos/video6.mp4" data-title="Amo estar a tu lado #6">🍿 Modo Cine</button>
+          </div>
+        </div>
+
+        <div class="video-card glass-card">
+          <video src="videos/video7.mp4" controls preload="metadata"></video>
+          <div class="video-card-footer">
+            <div>
+              <h4>Comidita juntos #7</h4>
+              <p>Llename de besos siempre 💖</p>
+            </div>
+            <button type="button" class="btn-secondary cinema-btn" data-video="videos/video7.mp4" data-title="Comidita juntos #7">🍿 Modo Cine</button>
+          </div>
+        </div>
+
+        <div class="video-card glass-card">
+          <video src="videos/video8.mp4" controls preload="metadata"></video>
+          <div class="video-card-footer">
+            <div>
+              <h4>Plaza Norte #8</h4>
+              <p>Amo estar a tu lado tesoro mio 💖</p>
+            </div>
+            <button type="button" class="btn-secondary cinema-btn" data-video="videos/video8.mp4" data-title="Plaza Norte #8">🍿 Modo Cine</button>
+          </div>
+        </div>
+
+        <div class="video-card glass-card">
+          <video src="videos/video9.mp4" controls preload="metadata"></video>
+          <div class="video-card-footer">
+            <div>
+              <h4>Mega plaza #9</h4>
+              <p>Besos ardientes 💖</p>
+            </div>
+            <button type="button" class="btn-secondary cinema-btn" data-video="videos/video9.mp4" data-title="Mega plaza #9">🍿 Modo Cine</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: NUESTRA PLAYLIST INTERACTIVA -->
+    <section id="musica" class="container">
+      <h2 class="section-title">🎵 Nuestras Canciones Favoritas</h2>
+      <p class="section-desc">Dale play a nuestra banda sonora. Las canciones que agregues quedan grabadas aquí.</p>
+
+      <div class="music-player glass-card">
+        <div class="player-top">
+          <div class="vinyl" id="vinyl-disc">🎶</div>
+          <div class="track-info">
+            <span class="now-playing-label">SONANDO AHORA</span>
+            <h3 id="track-title">Selecciona una canción</h3>
+            <p id="track-artist">Nuestra Playlist Especial</p>
+          </div>
+        </div>
+
+        <div class="progress-container" id="progress-container">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="time-stamps">
+          <span id="current-time">0:00</span>
+          <span id="duration-time">0:00</span>
+        </div>
+
+        <div class="player-controls">
+          <button type="button" id="prev-btn" class="control-btn" title="Anterior">⏮️</button>
+          <button type="button" id="play-btn" class="control-btn play-main" title="Reproducir/Pausar">▶️</button>
+          <button type="button" id="next-btn" class="control-btn" title="Siguiente">⏭️</button>
+        </div>
+
+        <audio id="audio-player"></audio>
+
+        <ul class="playlist" id="playlist"></ul>
+
+        <label class="upload-btn">
+          ➕ Cargar canción (.mp3) extra (se guarda)
+          <input type="file" id="audio-upload" accept="audio/*" multiple hidden />
+        </label>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 5: 101 RAZONES INTERACTIVAS -->
+    <section id="razones-101" class="container">
+      <h2 class="section-title">💘 101 Razones por las que te Amo</h2>
+      <p class="section-desc">Tarjetas numeradas del 1 al 101 con título y motivo. Filtra, busca o saca una razón sorpresa.</p>
+
+      <div class="reasons-toolbar glass-card">
+        <div class="reasons-filters" id="reasons-filters">
+          <button type="button" class="filter-pill active" data-category="all">Todas (101)</button>
+          <button type="button" class="filter-pill" data-category="ternura">Ternura 💚</button>
+          <button type="button" class="filter-pill" data-category="momentos">Momentos ✨</button>
+          <button type="button" class="filter-pill" data-category="futuro">Futuro 🌌</button>
+        </div>
+
+        <div class="reasons-search-row">
+          <input
+            type="search"
+            id="reasons-search-input"
+            class="reasons-search-input"
+            placeholder="Buscar palabra o número (ej. 97, 101, paz, risa, magia)..."
+          />
+          <button type="button" id="random-reason-btn" class="btn-primary random-reason-btn">
+            🎲 Razón Sorpresa
+          </button>
+        </div>
+        <p id="reasons-count-label" class="reasons-count-label">Mostrando 101 de 101 razones</p>
+      </div>
+
+      <div class="reasons-grid" id="reasons-grid"></div>
+
+      <div class="reasons-pagination">
+        <button type="button" id="load-more-reasons-btn" class="btn-secondary">
+          ✨ Ver más razones
+        </button>
+        <button type="button" id="show-all-reasons-btn" class="btn-secondary">
+          📜 Mostrar las 101 completas
+        </button>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: DOS JUEGOS ROMÁNTICOS Y DIDÁCTICOS (10 DE CADA UNO) -->
+    <section id="juegos" class="container">
+      <h2 class="section-title">🎮 Dos Juegos Didácticos de Amor</h2>
+      <p class="section-desc">Juegos interactivos para descubrir detalles de nuestra historia, reflexionar juntos y armar frases del corazón.</p>
+
+      <div class="games-grid">
+        <!-- JUEGO 1: TRIVIA DIDÁCTICA Y ROMÁNTICA (10 PREGUNTAS) -->
+        <article class="game-card glass-card">
+          <div class="game-header">
+            <span class="game-badge">JUEGO 1 · TRIVIA DIDÁCTICA</span>
+            <span class="game-score-pill" id="trivia-score-badge">⭐ 0 pts</span>
+          </div>
+          <h3>💘 Descifrando Nuestro Universo</h3>
+          <p class="game-intro">Responde las 10 preguntas y descubre el significado romántico detrás de cada fecha y detalle.</p>
+
+          <div class="trivia-box" id="trivia-box">
+            <p class="trivia-progress" id="trivia-progress">Pregunta 1 de 10</p>
+            <h4 class="trivia-question" id="trivia-question">Cargando pregunta...</h4>
+            <div class="trivia-options" id="trivia-options"></div>
+            <div class="trivia-feedback hidden" id="trivia-feedback"></div>
+            <div class="game-actions-row">
+              <button type="button" id="next-trivia-btn" class="btn-secondary hidden">Siguiente pregunta ➡️</button>
+              <button type="button" id="restart-trivia-btn" class="btn-secondary">🔄 Reiniciar trivia</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- JUEGO 2: ARMA LA FRASE DEL CORAZÓN (10 FRASES) -->
+        <article class="game-card glass-card">
+          <div class="game-header">
+            <span class="game-badge">JUEGO 2 · ARMA LA FRASE</span>
+            <span class="game-score-pill" id="puzzle-level-badge">💫 Frase 1 de 10</span>
+          </div>
+          <h3>🧩 Rompecabezas de Palabras del Corazón</h3>
+          <p class="game-intro">Toca los fragmentos en el orden correcto para formar cada una de las 10 frases con su pista didáctica.</p>
+
+          <div class="puzzle-box" id="puzzle-box">
+            <p class="puzzle-hint" id="puzzle-hint">💡 Pista: Cargando...</p>
+            <div class="puzzle-built-area" id="puzzle-built-area" aria-label="Frase armada"></div>
+            <div class="puzzle-bank-area" id="puzzle-bank-area" aria-label="Fragmentos disponibles"></div>
+            <p class="puzzle-status" id="puzzle-status"></p>
+            <div class="game-actions-row">
+              <button type="button" id="clear-puzzle-btn" class="btn-secondary">↩️ Limpiar</button>
+              <button type="button" id="next-puzzle-btn" class="btn-secondary">✨ Siguiente frase</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 6: CÁPSULA Y RULETA + BAÚL DE ARCHIVOS -->
+    <section id="archivos" class="container">
+      <h2 class="section-title">⏳ Cápsula, Ruleta & Baúl de Archivos</h2>
+      <p class="section-desc">Gira la ruleta de planes, deja tu deseo para nuestro 3 de diciembre o abre tus archivos especiales.</p>
+
+      <div class="gallery-actions">
+        <label class="upload-btn">
+          📎 Subir archivo (PDF, Video, Imagen)
+          <input type="file" id="file-upload" accept=".pdf,video/*,image/*" multiple hidden />
+        </label>
+      </div>
+
+      <div class="files-grid" id="files-grid">
+        <div class="file-card glass-card" data-type="capsule" data-title="Cápsula del Tiempo & Ruleta">
+          <span class="file-icon">⏳</span>
+          <h4>Cápsula & Ruleta</h4>
+          <p>Gira un plan o deja tu deseo para nuestro 3 de diciembre</p>
+          <button type="button" class="btn-secondary open-capsule-btn">Abrir cápsula</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 7: SOBRE / CARTA INTERACTIVA DINÁMICA -->
+    <section id="carta" class="container">
+      <h2 class="section-title">💌 Una carta para ti</h2>
+      <div class="envelope-wrapper" id="envelope-wrapper">
+        <div class="envelope" id="envelope">
+          <div class="envelope-front">
+            <span class="envelope-seal">💖</span>
+            <span>Toca para abrir tu carta</span>
+            <small class="envelope-sub">Clic para desplegar el mensaje</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="letter-paper glass-card hidden" id="letter-paper">
+        <div class="letter-sparkle-banner">✨ Carta desplegada especialmente para ti · Mi Grinch 💚</div>
+        <div class="letter-header-row">
+          <h3>Para ti, mi Grinch, con todo mi corazón:</h3>
+          <button type="button" id="expand-letter-btn" class="btn-secondary small-note-btn">🔍 Pantalla amplia</button>
+        </div>
+        <p id="typewriter-letter-text" class="typewriter-text"></p>
+        <p class="signature">Con todo mi amor ❤️✨</p>
+        <div class="letter-actions-row">
+          <button type="button" id="replay-letter-btn" class="btn-secondary">🔁 Volver a leer animada</button>
+          <button type="button" id="close-letter-btn" class="btn-secondary">Guardar carta</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 8: VALES CANJEABLES -->
+    <section id="vales" class="container">
+      <h2 class="section-title">🎟️ Tus Vales Especiales</h2>
+      <p class="section-desc">Haz clic en el que quieras reclamar hoy (tómale captura y mándamela 😉)</p>
+      <div class="coupons-grid">
+        <div class="coupon glass-card">
+          <div class="coupon-info">
+            <h4>🎟️ Vale #01</h4>
+            <p>Una cita sorpresa a tu elección</p>
+          </div>
+          <button type="button" class="btn-coupon">Canjear</button>
+        </div>
+
+        <div class="coupon glass-card">
+          <div class="coupon-info">
+            <h4>🎟️ Vale #02</h4>
+            <p>Tu comida o postre favorito</p>
+          </div>
+          <button type="button" class="btn-coupon">Canjear</button>
+        </div>
+
+        <div class="coupon glass-card">
+          <div class="coupon-info">
+            <h4>🎟️ Vale #03</h4>
+            <p>Un abrazo infinito y maratón de pelis</p>
+          </div>
+          <button type="button" class="btn-coupon">Canjear</button>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>Y aunque no tenga mucho, siempre trataré de darte mucho de lo poco que tengo 💙</p>
+    </footer>
+  </main>
+
+  <!-- MÚSICA DE FONDO FLOTANTE: JOHN LEGEND - ALL OF ME -->
+  <audio id="bg-music-player" loop preload="metadata"></audio>
+  <button type="button" id="bg-music-toggle-btn" class="bg-music-fab hidden" title="Activar o pausar All of Me de fondo">
+    🎶 All of Me (Fondo): OFF
+  </button>
+
+  <!-- MODAL VISOR DE FOTOS, VIDEOS, CÁPSULA Y ARCHIVOS -->
+  <div id="media-modal" class="modal hidden">
+    <div class="modal-content glass-card">
+      <button type="button" id="close-modal-btn" class="close-modal">✖</button>
+      <h3 id="modal-title">Vista previa</h3>
+      <div id="modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
